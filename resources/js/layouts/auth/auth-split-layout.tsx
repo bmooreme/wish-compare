@@ -1,41 +1,51 @@
-import AppLogoIcon from '@/components/app-logo-icon';
-import { type SharedData } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
+import { BrandWordmark } from '@/components/app-logo';
+import { Link } from '@inertiajs/react';
+import { Gift, ShieldCheck, Store } from 'lucide-react';
+import { type PropsWithChildren } from 'react';
 
 interface AuthLayoutProps {
-    children: React.ReactNode;
     title?: string;
     description?: string;
 }
 
-export default function AuthSplitLayout({ children, title, description }: AuthLayoutProps) {
-    const { name, quote } = usePage<SharedData>().props;
+const points = [
+    { icon: Gift, text: 'Wish lists and registries in one place' },
+    { icon: Store, text: 'Guests shop at any store they like' },
+    { icon: ShieldCheck, text: 'Surprise protection, item by item' },
+];
 
+export default function AuthSplitLayout({ children, title, description }: PropsWithChildren<AuthLayoutProps>) {
     return (
-        <div className="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
-            <div className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r">
-                <div className="absolute inset-0 bg-zinc-900" />
-                <Link href={route('home')} className="relative z-20 flex items-center text-lg font-medium">
-                    <AppLogoIcon className="mr-2 size-8 fill-current text-white" />
-                    {name}
+        <div className="bg-background grid min-h-dvh lg:grid-cols-[1.05fr_1fr]">
+            <div className="relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:p-12">
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(150deg, #2a1660 0%, #4c2fa0 45%, #e9877c 120%)' }} />
+                <div className="bg-grain absolute inset-0 opacity-40" />
+                <Link href={route('home')} className="relative z-10 text-white">
+                    <BrandWordmark className="[&>span:first-child]:bg-white/15 [&>span:first-child]:text-white" />
                 </Link>
-                {quote && (
-                    <div className="relative z-20 mt-auto">
-                        <blockquote className="space-y-2">
-                            <p className="text-lg">&ldquo;{quote.message}&rdquo;</p>
-                            <footer className="text-sm text-neutral-300">{quote.author}</footer>
-                        </blockquote>
-                    </div>
-                )}
+                <div className="relative z-10 max-w-md text-white">
+                    <h2 className="font-display text-4xl leading-tight font-medium text-balance">Gifting made easy, for everyone involved.</h2>
+                    <ul className="mt-8 space-y-4">
+                        {points.map(({ icon: Icon, text }) => (
+                            <li key={text} className="flex items-center gap-3 text-white/90">
+                                <span className="flex size-9 items-center justify-center rounded-full bg-white/12 ring-1 ring-white/20">
+                                    <Icon className="size-4" />
+                                </span>
+                                {text}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <p className="relative z-10 text-sm text-white/60">Free for list makers. No account needed for gift givers.</p>
             </div>
-            <div className="w-full lg:p-8">
-                <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-                    <Link href={route('home')} className="relative z-20 flex items-center justify-center lg:hidden">
-                        <AppLogoIcon className="h-10 fill-current text-black sm:h-12" />
+            <div className="flex flex-col items-center justify-center px-6 py-12 sm:px-10">
+                <div className="w-full max-w-sm">
+                    <Link href={route('home')} className="mb-10 flex justify-center lg:hidden">
+                        <BrandWordmark />
                     </Link>
-                    <div className="flex flex-col items-start gap-2 text-left sm:items-center sm:text-center">
-                        <h1 className="text-xl font-medium">{title}</h1>
-                        <p className="text-muted-foreground text-sm text-balance">{description}</p>
+                    <div className="mb-8 space-y-2 text-center lg:text-left">
+                        <h1 className="font-display text-3xl font-medium tracking-tight">{title}</h1>
+                        <p className="text-muted-foreground text-sm">{description}</p>
                     </div>
                     {children}
                 </div>

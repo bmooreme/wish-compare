@@ -23,8 +23,8 @@ export interface NavItem {
 
 export interface SharedData {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
+    flash: { success?: string | null };
     [key: string]: unknown;
 }
 
@@ -38,3 +38,5 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export * from './lists';

@@ -9,6 +9,13 @@
 @theme {
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+
+    --color-brand: var(--brand);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-brand-soft: var(--brand-soft);
+    --color-success: var(--success);
+    --color-success-soft: var(--success-soft);
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -77,74 +84,84 @@
 }
 
 :root {
-    --background: hsl(0, 0%, 100%);
-    --foreground: hsl(0, 0%, 3.9%);
+    --background: hsl(36, 33%, 98%);
+    --foreground: hsl(250, 24%, 13%);
     --card: hsl(0, 0%, 100%);
-    --card-foreground: hsl(0, 0%, 3.9%);
+    --card-foreground: hsl(250, 24%, 13%);
     --popover: hsl(0, 0%, 100%);
-    --popover-foreground: hsl(0, 0%, 3.9%);
-    --primary: hsl(0, 0%, 9%);
-    --primary-foreground: hsl(0, 0%, 98%);
-    --secondary: hsl(0, 0%, 96.1%);
-    --secondary-foreground: hsl(0, 0%, 9%);
-    --muted: hsl(0, 0%, 96.1%);
-    --muted-foreground: hsl(0, 0%, 45.1%);
-    --accent: hsl(0, 0%, 96.1%);
-    --accent-foreground: hsl(0, 0%, 9%);
-    --destructive: hsl(0, 84.2%, 60.2%);
-    --destructive-foreground: hsl(0, 0%, 98%);
-    --border: hsl(0, 0%, 92.8%);
-    --input: hsl(0, 0%, 89.8%);
-    --ring: hsl(0, 0%, 3.9%);
+    --popover-foreground: hsl(250, 24%, 13%);
+    --primary: hsl(256, 50%, 40%);
+    --primary-foreground: hsl(0, 0%, 100%);
+    --secondary: hsl(36, 24%, 94%);
+    --secondary-foreground: hsl(250, 24%, 18%);
+    --muted: hsl(36, 22%, 94.5%);
+    --muted-foreground: hsl(250, 8%, 42%);
+    --accent: hsl(256, 40%, 96%);
+    --accent-foreground: hsl(256, 50%, 32%);
+    --destructive: hsl(0, 72%, 51%);
+    --destructive-foreground: hsl(0, 0%, 100%);
+    --border: hsl(36, 16%, 88%);
+    --input: hsl(36, 14%, 85%);
+    --ring: hsl(256, 50%, 40%);
+    --brand: hsl(12, 82%, 60%);
+    --brand-foreground: hsl(0, 0%, 100%);
+    --brand-soft: hsl(14, 90%, 95%);
+    --success: hsl(152, 55%, 33%);
+    --success-soft: hsl(150, 45%, 94%);
     --chart-1: hsl(12, 76%, 61%);
     --chart-2: hsl(173, 58%, 39%);
     --chart-3: hsl(197, 37%, 24%);
     --chart-4: hsl(43, 74%, 66%);
     --chart-5: hsl(27, 87%, 67%);
-    --radius: 0.5rem;
-    --sidebar-background: hsl(0, 0%, 98%);
-    --sidebar-foreground: hsl(240, 5.3%, 30%);
-    --sidebar-primary: hsl(0, 0%, 10%);
-    --sidebar-primary-foreground: hsl(0, 0%, 98%);
-    --sidebar-accent: hsl(0, 0%, 94%);
-    --sidebar-accent-foreground: hsl(0, 0%, 30%);
-    --sidebar-border: hsl(0, 0%, 91%);
-    --sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+    --radius: 0.75rem;
+    --sidebar-background: hsl(36, 30%, 96.5%);
+    --sidebar-foreground: hsl(250, 12%, 30%);
+    --sidebar-primary: hsl(256, 50%, 40%);
+    --sidebar-primary-foreground: hsl(0, 0%, 100%);
+    --sidebar-accent: hsl(36, 22%, 91%);
+    --sidebar-accent-foreground: hsl(250, 24%, 15%);
+    --sidebar-border: hsl(36, 16%, 88%);
+    --sidebar-ring: hsl(256, 50%, 40%);
 }
 
 .dark {
-    --background: hsl(0, 0%, 3.9%);
-    --foreground: hsl(0, 0%, 98%);
-    --card: hsl(0, 0%, 3.9%);
-    --card-foreground: hsl(0, 0%, 98%);
-    --popover: hsl(0, 0%, 3.9%);
-    --popover-foreground: hsl(0, 0%, 98%);
-    --primary: hsl(0, 0%, 98%);
-    --primary-foreground: hsl(0, 0%, 9%);
-    --secondary: hsl(0, 0%, 14.9%);
-    --secondary-foreground: hsl(0, 0%, 98%);
-    --muted: hsl(0, 0%, 6.9%);
-    --muted-foreground: hsl(0, 0%, 63.9%);
-    --accent: hsl(0, 0%, 14.9%);
-    --accent-foreground: hsl(0, 0%, 98%);
-    --destructive: hsl(0, 84%, 60%);
-    --destructive-foreground: hsl(0, 0%, 98%);
-    --border: hsl(0, 0%, 14.9%);
-    --input: hsl(0, 0%, 14.9%);
-    --ring: hsl(0, 0%, 83.1%);
+    --background: hsl(252, 22%, 7%);
+    --foreground: hsl(36, 20%, 95%);
+    --card: hsl(252, 18%, 10%);
+    --card-foreground: hsl(36, 20%, 95%);
+    --popover: hsl(252, 18%, 10%);
+    --popover-foreground: hsl(36, 20%, 95%);
+    --primary: hsl(256, 85%, 78%);
+    --primary-foreground: hsl(252, 30%, 12%);
+    --secondary: hsl(252, 14%, 16%);
+    --secondary-foreground: hsl(36, 20%, 95%);
+    --muted: hsl(252, 14%, 14%);
+    --muted-foreground: hsl(250, 10%, 66%);
+    --accent: hsl(256, 30%, 18%);
+    --accent-foreground: hsl(256, 85%, 86%);
+    --destructive: hsl(0, 70%, 58%);
+    --destructive-foreground: hsl(0, 0%, 100%);
+    --border: hsl(252, 12%, 19%);
+    --input: hsl(252, 12%, 22%);
+    --ring: hsl(256, 85%, 78%);
+    --brand: hsl(12, 88%, 66%);
+    --brand-foreground: hsl(252, 30%, 10%);
+    --brand-soft: hsl(12, 40%, 16%);
+    --success: hsl(150, 50%, 58%);
+    --success-soft: hsl(152, 30%, 14%);
     --chart-1: hsl(220, 70%, 50%);
     --chart-2: hsl(160, 60%, 45%);
     --chart-3: hsl(30, 80%, 55%);
     --chart-4: hsl(280, 65%, 60%);
     --chart-5: hsl(340, 75%, 55%);
-    --sidebar-background: hsl(0, 0%, 7%);
-    --sidebar-foreground: hsl(0, 0%, 80%);
-    --sidebar-primary: hsl(360, 100%, 100%);
-    --sidebar-primary-foreground: hsl(0, 0%, 100%);
-    --sidebar-accent: hsl(0, 0%, 15.9%);
-    --sidebar-accent-foreground: hsl(240, 4.8%, 95.9%);
-    --sidebar-border: hsl(0, 0%, 15.9%);
-    --sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+    --sidebar-background: hsl(252, 22%, 8.5%);
+    --sidebar-foreground: hsl(36, 12%, 82%);
+    --sidebar-primary: hsl(256, 85%, 78%);
+    --sidebar-primary-foreground: hsl(252, 30%, 12%);
+    --sidebar-accent: hsl(252, 14%, 15%);
+    --sidebar-accent-foreground: hsl(36, 20%, 95%);
+    --sidebar-border: hsl(252, 12%, 17%);
+    --sidebar-ring: hsl(256, 85%, 78%);
 }
 
 @layer base {
@@ -154,5 +171,22 @@
 
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+@layer utilities {
+    .font-display {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        letter-spacing: -0.01em;
+    }
+
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .bg-grain {
+        background-image: radial-gradient(hsl(250 20% 50% / 0.06) 1px, transparent 1px);
+        background-size: 18px 18px;
     }
 }
