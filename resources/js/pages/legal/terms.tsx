@@ -10,13 +10,13 @@ export default function Terms() {
             <p className="bg-muted rounded-xl p-4 text-sm">Draft for review: have these terms checked by a qualified professional before launch.</p>
             <h2>Using {name}</h2>
             <p>
-                {name} helps you create wish lists and registries and share them with others. You’re responsible for what you add to your lists and for keeping your account
-                secure.
+                {name} helps you create wish lists and registries and share them with others. You’re responsible for what you add to your lists and
+                for keeping your account secure.
             </p>
             <h2>Purchases happen at stores</h2>
             <p>
-                {name} doesn’t sell products. All purchases, payments, shipping, returns and customer service are handled by the store you buy from, under that store’s terms.
-                Purchase status on a list is reported by gift givers and may not always be accurate.
+                {name} doesn’t sell products. All purchases, payments, shipping, returns and customer service are handled by the store you buy from,
+                under that store’s terms. Purchase status on a list is reported by gift givers and may not always be accurate.
             </p>
             <h2>Acceptable use</h2>
             <ul>

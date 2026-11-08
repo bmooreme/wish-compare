@@ -1,6 +1,6 @@
 import { ItemImage } from '@/components/lists/item-image';
-import { Field } from '@/components/lists/list-form';
 import { ListCover } from '@/components/lists/list-cover';
+import { Field } from '@/components/lists/list-form';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,15 @@ import { Head, router, useForm } from '@inertiajs/react';
 import { ArrowLeft, LoaderCircle, Undo2 } from 'lucide-react';
 
 interface Props {
-    purchase: { id: number; buyer_name: string; buyer_email: string; order_number: string; store_key: string | null; quantity: number; purchased_at: string };
+    purchase: {
+        id: number;
+        buyer_name: string;
+        buyer_email: string;
+        order_number: string;
+        store_key: string | null;
+        quantity: number;
+        purchased_at: string;
+    };
     item: { title: string; image_url: string | null; max_quantity: number; is_registry: boolean };
     list: { title: string; owner_name: string | null; share_url: string; theme: string };
     token: string;
@@ -47,7 +55,9 @@ export default function ManagePurchase({ purchase, item, list, token, stores }: 
                             <ItemImage src={item.image_url} alt="" className="size-20 shrink-0 rounded-xl bg-white" />
                             <div>
                                 <p className="font-medium">{item.title}</p>
-                                <p className="text-muted-foreground text-sm">Marked purchased on {new Date(purchase.purchased_at).toLocaleDateString('en-US', { dateStyle: 'long' })}</p>
+                                <p className="text-muted-foreground text-sm">
+                                    Marked purchased on {new Date(purchase.purchased_at).toLocaleDateString('en-US', { dateStyle: 'long' })}
+                                </p>
                             </div>
                         </div>
 
@@ -60,10 +70,21 @@ export default function ManagePurchase({ purchase, item, list, token, stores }: 
                         >
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <Field label="Your name" htmlFor="buyer_name" error={form.errors.buyer_name}>
-                                    <Input id="buyer_name" value={form.data.buyer_name} onChange={(e) => form.setData('buyer_name', e.target.value)} required />
+                                    <Input
+                                        id="buyer_name"
+                                        value={form.data.buyer_name}
+                                        onChange={(e) => form.setData('buyer_name', e.target.value)}
+                                        required
+                                    />
                                 </Field>
                                 <Field label="Email used for the order" htmlFor="buyer_email" error={form.errors.buyer_email}>
-                                    <Input id="buyer_email" type="email" value={form.data.buyer_email} onChange={(e) => form.setData('buyer_email', e.target.value)} required />
+                                    <Input
+                                        id="buyer_email"
+                                        type="email"
+                                        value={form.data.buyer_email}
+                                        onChange={(e) => form.setData('buyer_email', e.target.value)}
+                                        required
+                                    />
                                 </Field>
                                 <Field label="Store" htmlFor="store_key" error={form.errors.store_key}>
                                     <Select value={form.data.store_key} onValueChange={(v) => form.setData('store_key', v)}>
@@ -80,7 +101,12 @@ export default function ManagePurchase({ purchase, item, list, token, stores }: 
                                     </Select>
                                 </Field>
                                 <Field label="Order number" htmlFor="order_number" error={form.errors.order_number}>
-                                    <Input id="order_number" value={form.data.order_number} onChange={(e) => form.setData('order_number', e.target.value)} required />
+                                    <Input
+                                        id="order_number"
+                                        value={form.data.order_number}
+                                        onChange={(e) => form.setData('order_number', e.target.value)}
+                                        required
+                                    />
                                 </Field>
                                 {item.is_registry && item.max_quantity > 1 && (
                                     <Field label={`Quantity (up to ${item.max_quantity})`} htmlFor="quantity" error={form.errors.quantity}>
@@ -109,7 +135,10 @@ export default function ManagePurchase({ purchase, item, list, token, stores }: 
                                             <DialogClose asChild>
                                                 <Button variant="outline">Keep it</Button>
                                             </DialogClose>
-                                            <Button variant="destructive" onClick={() => router.delete(route('purchases.destroy', purchase.id), { data: { token } })}>
+                                            <Button
+                                                variant="destructive"
+                                                onClick={() => router.delete(route('purchases.destroy', purchase.id), { data: { token } })}
+                                            >
                                                 Remove purchase
                                             </Button>
                                         </DialogFooter>
@@ -122,7 +151,9 @@ export default function ManagePurchase({ purchase, item, list, token, stores }: 
                         </form>
                     </div>
                 </div>
-                <p className="text-muted-foreground mt-6 text-center text-xs">Keep your confirmation email: this private link is the only way to change this purchase.</p>
+                <p className="text-muted-foreground mt-6 text-center text-xs">
+                    Keep your confirmation email: this private link is the only way to change this purchase.
+                </p>
             </div>
         </PublicLayout>
     );

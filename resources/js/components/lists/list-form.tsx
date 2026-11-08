@@ -91,7 +91,13 @@ export function ListForm({ initial, action, submitLabel, hasPassword = false, lo
                         />
                     </Field>
                     <Field label={isRegistry ? 'Event date' : 'Occasion date'} hint="Optional" error={errors.event_date} htmlFor="event_date">
-                        <Input id="event_date" type="date" value={data.event_date} onChange={(e) => setData('event_date', e.target.value)} className="sm:max-w-56" />
+                        <Input
+                            id="event_date"
+                            type="date"
+                            value={data.event_date}
+                            onChange={(e) => setData('event_date', e.target.value)}
+                            className="sm:max-w-56"
+                        />
                     </Field>
                     <div className="space-y-2">
                         <Label>Cover</Label>
@@ -176,22 +182,61 @@ export function ListForm({ initial, action, submitLabel, hasPassword = false, lo
                     {data.shipping_enabled && (
                         <div className="mt-5 grid gap-4 sm:grid-cols-6">
                             <Field label="Recipient name" className="sm:col-span-6" htmlFor="ship_name" error={err['shipping_address.name']}>
-                                <Input id="ship_name" value={data.shipping_address.name ?? ''} onChange={(e) => setAddress('name', e.target.value)} autoComplete="name" />
+                                <Input
+                                    id="ship_name"
+                                    value={data.shipping_address.name ?? ''}
+                                    onChange={(e) => setAddress('name', e.target.value)}
+                                    autoComplete="name"
+                                />
                             </Field>
                             <Field label="Street address" className="sm:col-span-6" htmlFor="ship_line1" error={err['shipping_address.line1']}>
-                                <Input id="ship_line1" value={data.shipping_address.line1 ?? ''} onChange={(e) => setAddress('line1', e.target.value)} autoComplete="address-line1" />
+                                <Input
+                                    id="ship_line1"
+                                    value={data.shipping_address.line1 ?? ''}
+                                    onChange={(e) => setAddress('line1', e.target.value)}
+                                    autoComplete="address-line1"
+                                />
                             </Field>
-                            <Field label="Apt, suite, etc." hint="Optional" className="sm:col-span-6" htmlFor="ship_line2" error={err['shipping_address.line2']}>
-                                <Input id="ship_line2" value={data.shipping_address.line2 ?? ''} onChange={(e) => setAddress('line2', e.target.value)} autoComplete="address-line2" />
+                            <Field
+                                label="Apt, suite, etc."
+                                hint="Optional"
+                                className="sm:col-span-6"
+                                htmlFor="ship_line2"
+                                error={err['shipping_address.line2']}
+                            >
+                                <Input
+                                    id="ship_line2"
+                                    value={data.shipping_address.line2 ?? ''}
+                                    onChange={(e) => setAddress('line2', e.target.value)}
+                                    autoComplete="address-line2"
+                                />
                             </Field>
                             <Field label="City" className="sm:col-span-3" htmlFor="ship_city" error={err['shipping_address.city']}>
-                                <Input id="ship_city" value={data.shipping_address.city ?? ''} onChange={(e) => setAddress('city', e.target.value)} autoComplete="address-level2" />
+                                <Input
+                                    id="ship_city"
+                                    value={data.shipping_address.city ?? ''}
+                                    onChange={(e) => setAddress('city', e.target.value)}
+                                    autoComplete="address-level2"
+                                />
                             </Field>
                             <Field label="State" className="sm:col-span-1" htmlFor="ship_state" error={err['shipping_address.state']}>
-                                <Input id="ship_state" value={data.shipping_address.state ?? ''} onChange={(e) => setAddress('state', e.target.value)} autoComplete="address-level1" maxLength={40} />
+                                <Input
+                                    id="ship_state"
+                                    value={data.shipping_address.state ?? ''}
+                                    onChange={(e) => setAddress('state', e.target.value)}
+                                    autoComplete="address-level1"
+                                    maxLength={40}
+                                />
                             </Field>
                             <Field label="ZIP" className="sm:col-span-2" htmlFor="ship_zip" error={err['shipping_address.postal_code']}>
-                                <Input id="ship_zip" value={data.shipping_address.postal_code ?? ''} onChange={(e) => setAddress('postal_code', e.target.value)} autoComplete="postal-code" inputMode="numeric" maxLength={12} />
+                                <Input
+                                    id="ship_zip"
+                                    value={data.shipping_address.postal_code ?? ''}
+                                    onChange={(e) => setAddress('postal_code', e.target.value)}
+                                    autoComplete="postal-code"
+                                    inputMode="numeric"
+                                    maxLength={12}
+                                />
                             </Field>
                         </div>
                     )}
@@ -244,7 +289,19 @@ export function Field({
     );
 }
 
-function ChoiceCard({ selected, onSelect, icon, title, description }: { selected: boolean; onSelect: () => void; icon: ReactNode; title: string; description: string }) {
+function ChoiceCard({
+    selected,
+    onSelect,
+    icon,
+    title,
+    description,
+}: {
+    selected: boolean;
+    onSelect: () => void;
+    icon: ReactNode;
+    title: string;
+    description: string;
+}) {
     return (
         <button
             type="button"
@@ -255,7 +312,12 @@ function ChoiceCard({ selected, onSelect, icon, title, description }: { selected
                 selected ? 'border-primary bg-accent ring-primary/30 ring-2' : 'hover:border-foreground/30 hover:bg-muted/50',
             )}
         >
-            <span className={cn('mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg', selected ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground')}>
+            <span
+                className={cn(
+                    'mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg',
+                    selected ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground',
+                )}
+            >
                 {icon}
             </span>
             <span>
@@ -266,7 +328,19 @@ function ChoiceCard({ selected, onSelect, icon, title, description }: { selected
     );
 }
 
-export function ToggleRow({ id, checked, onChange, title, description }: { id: string; checked: boolean; onChange: (v: boolean) => void; title: string; description: string }) {
+export function ToggleRow({
+    id,
+    checked,
+    onChange,
+    title,
+    description,
+}: {
+    id: string;
+    checked: boolean;
+    onChange: (v: boolean) => void;
+    title: string;
+    description: string;
+}) {
     return (
         <div className="flex items-start justify-between gap-6">
             <label htmlFor={id} className="cursor-pointer">

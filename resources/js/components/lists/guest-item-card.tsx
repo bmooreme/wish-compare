@@ -1,7 +1,14 @@
 import { MostWantedBadge } from '@/components/lists/badges';
 import { ItemImage } from '@/components/lists/item-image';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import { type GuestItem } from '@/types';
 import { Check, ChevronDown, ExternalLink, PackageCheck, ShoppingBag } from 'lucide-react';
@@ -20,9 +27,21 @@ export function GuestItemCard({ item, isRegistry, isOwner, onShop, onPurchased }
     const partial = isRegistry && status.purchased > 0 && !status.complete;
 
     return (
-        <article className={cn('bg-card group flex flex-col overflow-hidden rounded-2xl border shadow-xs transition', !status.complete && 'hover:shadow-lg')}>
+        <article
+            className={cn(
+                'bg-card group flex flex-col overflow-hidden rounded-2xl border shadow-xs transition',
+                !status.complete && 'hover:shadow-lg',
+            )}
+        >
             <div className="relative">
-                <ItemImage src={item.image_url} alt={item.title} className={cn('aspect-square w-full bg-white dark:bg-white/95', status.complete && 'opacity-50 grayscale')} />
+                <ItemImage
+                    src={item.image_url}
+                    alt={item.title}
+                    className={cn(
+                        'aspect-[4/3] w-full bg-white min-[480px]:aspect-square dark:bg-white/95',
+                        status.complete && 'opacity-50 grayscale',
+                    )}
+                />
                 <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5">{item.most_wanted && <MostWantedBadge />}</div>
                 {status.complete && (
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -48,7 +67,10 @@ export function GuestItemCard({ item, isRegistry, isOwner, onShop, onPurchased }
                             {!status.complete && <span className="font-medium">{status.remaining} still needed</span>}
                         </div>
                         <div className="bg-muted h-1.5 overflow-hidden rounded-full">
-                            <div className="bg-success h-full rounded-full transition-all" style={{ width: `${Math.min(100, (status.purchased / item.quantity) * 100)}%` }} />
+                            <div
+                                className="bg-success h-full rounded-full transition-all"
+                                style={{ width: `${Math.min(100, (status.purchased / item.quantity) * 100)}%` }}
+                            />
                         </div>
                     </div>
                 )}
@@ -60,20 +82,25 @@ export function GuestItemCard({ item, isRegistry, isOwner, onShop, onPurchased }
                         <>
                             {primary && (
                                 <div className="flex">
-                                    <Button asChild className={cn('flex-1', others.length > 0 && 'rounded-r-none')}>
+                                    <Button asChild className={cn('min-w-0 flex-1', others.length > 0 && 'rounded-r-none')}>
                                         <a href={primary.href} target="_blank" rel="noopener sponsored" onClick={() => onShop(primary.key)}>
-                                            <ShoppingBag /> Buy at {primary.name}
+                                            <ShoppingBag /> <span className="truncate">Buy at {primary.name}</span>
                                         </a>
                                     </Button>
                                     {others.length > 0 && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
-                                                <Button className="border-primary-foreground/20 rounded-l-none border-l px-2.5" aria-label="More stores">
+                                                <Button
+                                                    className="border-primary-foreground/20 shrink-0 rounded-l-none border-l px-2.5"
+                                                    aria-label="More stores"
+                                                >
                                                     <ChevronDown />
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end" className="w-56">
-                                                <DropdownMenuLabel className="text-muted-foreground text-xs font-normal">Find it at another store</DropdownMenuLabel>
+                                                <DropdownMenuLabel className="text-muted-foreground text-xs font-normal">
+                                                    Find it at another store
+                                                </DropdownMenuLabel>
                                                 <DropdownMenuSeparator />
                                                 {others.map((s) => (
                                                     <DropdownMenuItem key={s.key} asChild>

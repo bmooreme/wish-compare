@@ -3,15 +3,42 @@ import { Button } from '@/components/ui/button';
 import PublicLayout from '@/layouts/public-layout';
 import { type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { ArrowRight, Check, EyeOff, Gift, Heart, Link2, Lock, MapPin, PackageCheck, ShoppingBag, Smartphone, Sparkles, Store, UserRoundX } from 'lucide-react';
+import {
+    ArrowRight,
+    Check,
+    EyeOff,
+    Gift,
+    Heart,
+    Link2,
+    Lock,
+    MapPin,
+    PackageCheck,
+    ShoppingBag,
+    Smartphone,
+    Sparkles,
+    Store,
+    UserRoundX,
+} from 'lucide-react';
 
 const stores = ['Amazon', 'Walmart', 'Target', 'Best Buy', 'Barnes & Noble', 'Etsy', 'Wayfair', 'Crate & Barrel'];
 
 const features = [
-    { icon: EyeOff, title: 'Surprise protection', text: 'Purchases stay hidden from you by default. Reveal status item by item, only when you want to.' },
-    { icon: Store, title: 'Every store, one list', text: 'Paste a link from any shop. Guests can buy from the original store or compare at other big retailers.' },
+    {
+        icon: EyeOff,
+        title: 'Surprise protection',
+        text: 'Purchases stay hidden from you by default. Reveal status item by item, only when you want to.',
+    },
+    {
+        icon: Store,
+        title: 'Every store, one list',
+        text: 'Paste a link from any shop. Guests can buy from the original store or compare at other big retailers.',
+    },
     { icon: UserRoundX, title: 'No account for guests', text: 'Friends and family open your link and shop. No sign-ups, no passwords, no friction.' },
-    { icon: PackageCheck, title: 'No duplicate gifts', text: 'Buyers mark gifts purchased with their order number, and get a private link to change it later.' },
+    {
+        icon: PackageCheck,
+        title: 'No duplicate gifts',
+        text: 'Buyers mark gifts purchased with their order number, and get a private link to change it later.',
+    },
     { icon: Heart, title: 'Most wanted', text: 'Flag the things you’d love most so they stand out to everyone shopping your list.' },
     { icon: Lock, title: 'Your privacy, your call', text: 'Make a list public, link-only, or password protected. Change it any time.' },
 ];
@@ -27,8 +54,14 @@ export default function Welcome() {
             {/* Hero */}
             <section className="relative overflow-hidden">
                 <div className="pointer-events-none absolute inset-0 -z-10">
-                    <div className="absolute -top-40 left-1/2 h-[36rem] w-[60rem] -translate-x-1/2 rounded-full opacity-40 blur-3xl" style={{ background: 'radial-gradient(closest-side, #b9a6f2, transparent)' }} />
-                    <div className="absolute top-40 -right-40 h-[28rem] w-[28rem] rounded-full opacity-35 blur-3xl" style={{ background: 'radial-gradient(closest-side, #f6a99b, transparent)' }} />
+                    <div
+                        className="absolute -top-40 left-1/2 h-[36rem] w-[60rem] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+                        style={{ background: 'radial-gradient(closest-side, #b9a6f2, transparent)' }}
+                    />
+                    <div
+                        className="absolute top-40 -right-40 h-[28rem] w-[28rem] rounded-full opacity-35 blur-3xl"
+                        style={{ background: 'radial-gradient(closest-side, #f6a99b, transparent)' }}
+                    />
                 </div>
                 <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-14 pb-20 sm:px-6 md:pt-20 lg:grid-cols-[1.1fr_1fr] lg:pb-28">
                     <div>
@@ -39,7 +72,8 @@ export default function Welcome() {
                             The gift list that works with <em className="text-primary not-italic">every store</em>.
                         </h1>
                         <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-                            Collect gifts from anywhere online, share one link, and let friends and family shop wherever they like, while keeping every surprise a surprise.
+                            Collect gifts from anywhere online, share one link, and let friends and family shop wherever they like, while keeping
+                            every surprise a surprise.
                         </p>
                         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                             <Button size="lg" className="h-12 px-6 text-base" asChild>
@@ -66,7 +100,9 @@ export default function Welcome() {
             {/* Stores strip */}
             <section className="bg-card/60 border-y">
                 <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-                    <p className="text-muted-foreground text-center text-xs font-semibold tracking-[0.18em] uppercase">Add gifts from your favorite stores</p>
+                    <p className="text-muted-foreground text-center text-xs font-semibold tracking-[0.18em] uppercase">
+                        Add gifts from your favorite stores
+                    </p>
                     <div className="text-muted-foreground/80 mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
                         {stores.map((s) => (
                             <span key={s} className="font-display text-lg font-medium md:text-xl">
@@ -86,9 +122,21 @@ export default function Welcome() {
                 </div>
                 <ol className="mt-14 grid gap-6 md:grid-cols-3">
                     {[
-                        { icon: Link2, title: 'Paste product links', text: 'We fetch the name and photo automatically. Add notes like size or color, and flag your most wanted.' },
-                        { icon: Gift, title: 'Share one link', text: 'Text it, email it, or add it to your invitation. Keep it public, link-only, or password protected.' },
-                        { icon: ShoppingBag, title: 'Guests shop anywhere', text: 'They buy from the store of their choice, then mark it purchased so nobody doubles up.' },
+                        {
+                            icon: Link2,
+                            title: 'Paste product links',
+                            text: 'We fetch the name and photo automatically. Add notes like size or color, and flag your most wanted.',
+                        },
+                        {
+                            icon: Gift,
+                            title: 'Share one link',
+                            text: 'Text it, email it, or add it to your invitation. Keep it public, link-only, or password protected.',
+                        },
+                        {
+                            icon: ShoppingBag,
+                            title: 'Guests shop anywhere',
+                            text: 'They buy from the store of their choice, then mark it purchased so nobody doubles up.',
+                        },
                     ].map(({ icon: Icon, title, text }, i) => (
                         <li key={title} className="bg-card relative rounded-3xl border p-7 shadow-xs">
                             <span className="font-display text-muted-foreground/20 absolute top-5 right-6 text-6xl font-semibold">{i + 1}</span>
@@ -130,6 +178,7 @@ export default function Welcome() {
                         {
                             theme: 'dusk',
                             title: 'Wish lists',
+                            cta: 'Create a wish list',
                             text: 'For birthdays, holidays and everything in between.',
                             points: ['Add anything from any store', 'Flag your most wanted', 'Share with a link or password'],
                             type: 'wishlist',
@@ -137,8 +186,13 @@ export default function Welcome() {
                         {
                             theme: 'blush',
                             title: 'Registries',
+                            cta: 'Create a registry',
                             text: 'For weddings, babies, graduations and new homes.',
-                            points: ['Ask for quantities (“8 dinner plates”)', 'Event date with a countdown', 'Shipping address, revealed on request'],
+                            points: [
+                                'Ask for quantities (“8 dinner plates”)',
+                                'Event date with a countdown',
+                                'Shipping address, revealed on request',
+                            ],
                             type: 'registry',
                         },
                     ].map((card) => (
@@ -157,7 +211,7 @@ export default function Welcome() {
                                 </ul>
                                 <Button className="mt-8" variant="outline" asChild>
                                     <Link href={auth.user ? route('lists.create', { type: card.type }) : route('register')}>
-                                        Create a {card.title.toLowerCase().replace(/s$/, '')} <ArrowRight />
+                                        {card.cta} <ArrowRight />
                                     </Link>
                                 </Button>
                             </div>
@@ -174,8 +228,12 @@ export default function Welcome() {
                 >
                     <div className="bg-grain absolute inset-0 opacity-40" />
                     <div className="relative">
-                        <h2 className="font-display mx-auto max-w-2xl text-4xl font-medium tracking-tight text-balance md:text-5xl">Make gifting the easy part.</h2>
-                        <p className="mx-auto mt-4 max-w-xl text-lg text-white/80">Create your first list in under a minute. Free, forever, for list makers and gift givers.</p>
+                        <h2 className="font-display mx-auto max-w-2xl text-4xl font-medium tracking-tight text-balance md:text-5xl">
+                            Make gifting the easy part.
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-xl text-lg text-white/80">
+                            Create your first list in under a minute. Free, forever, for list makers and gift givers.
+                        </p>
                         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                             <Button size="lg" className="h-12 bg-white px-6 text-base text-black hover:bg-white/90" asChild>
                                 <Link href={ctaHref}>

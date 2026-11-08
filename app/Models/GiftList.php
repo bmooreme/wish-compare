@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\GiftListFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,7 @@ use Illuminate\Support\Str;
 
 class GiftList extends Model
 {
-    /** @use HasFactory<\Database\Factories\GiftListFactory> */
+    /** @use HasFactory<GiftListFactory> */
     use HasFactory;
 
     public const TYPES = ['wishlist', 'registry'];

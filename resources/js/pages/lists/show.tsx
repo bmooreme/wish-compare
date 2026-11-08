@@ -1,5 +1,5 @@
-import { PrivacyBadge, TypeBadge } from '@/components/lists/badges';
 import { AddItem } from '@/components/lists/add-item';
+import { PrivacyBadge, TypeBadge } from '@/components/lists/badges';
 import { CopyLinkButton } from '@/components/lists/copy-link';
 import { ListCover } from '@/components/lists/list-cover';
 import { OwnerItemRow } from '@/components/lists/owner-item-row';
@@ -118,8 +118,8 @@ export default function ShowList({ list, items: serverItems }: Props) {
                 <div className="bg-accent/60 text-accent-foreground flex items-start gap-3 rounded-2xl p-4 text-sm">
                     <ShieldCheck className="mt-0.5 size-5 shrink-0" />
                     <p>
-                        <span className="font-semibold">Surprise protection is on.</span> Purchase status is hidden from you unless you switch it on for an item. Guests always see
-                        what’s been bought, so nobody doubles up.
+                        <span className="font-semibold">Surprise protection is on.</span> Purchase status is hidden from you unless you switch it on
+                        for an item. Guests always see what’s been bought, so nobody doubles up.
                     </p>
                 </div>
 
@@ -134,7 +134,10 @@ export default function ShowList({ list, items: serverItems }: Props) {
                             <button
                                 key={key}
                                 onClick={() => setFilter(key)}
-                                className={cn('rounded-full px-4 py-1.5 font-medium transition', filter === key ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground')}
+                                className={cn(
+                                    'rounded-full px-4 py-1.5 font-medium transition',
+                                    filter === key ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground',
+                                )}
                             >
                                 {label}
                             </button>

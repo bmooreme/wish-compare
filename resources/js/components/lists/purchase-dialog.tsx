@@ -96,7 +96,13 @@ export function PurchaseDialog({ item, onClose, token, ownerName, isRegistry, st
 
                     <div className="grid gap-4 sm:grid-cols-2">
                         <Field label="Your name" htmlFor="buyer_name" error={form.errors.buyer_name}>
-                            <Input id="buyer_name" autoComplete="name" required value={form.data.buyer_name} onChange={(e) => form.setData('buyer_name', e.target.value)} />
+                            <Input
+                                id="buyer_name"
+                                autoComplete="name"
+                                required
+                                value={form.data.buyer_name}
+                                onChange={(e) => form.setData('buyer_name', e.target.value)}
+                            />
                         </Field>
                         <Field label="Email used for the order" htmlFor="buyer_email" error={form.errors.buyer_email}>
                             <Input
@@ -123,7 +129,13 @@ export function PurchaseDialog({ item, onClose, token, ownerName, isRegistry, st
                             </Select>
                         </Field>
                         <Field label="Order number" htmlFor="order_number" error={form.errors.order_number}>
-                            <Input id="order_number" required value={form.data.order_number} onChange={(e) => form.setData('order_number', e.target.value)} placeholder="e.g. 112-4459021" />
+                            <Input
+                                id="order_number"
+                                required
+                                value={form.data.order_number}
+                                onChange={(e) => form.setData('order_number', e.target.value)}
+                                placeholder="e.g. 112-4459021"
+                            />
                         </Field>
                         {isRegistry && remaining > 1 && (
                             <Field label={`Quantity (${remaining} still needed)`} htmlFor="quantity" error={form.errors.quantity}>
@@ -144,7 +156,12 @@ export function PurchaseDialog({ item, onClose, token, ownerName, isRegistry, st
                     <div className="absolute -left-[9999px]" aria-hidden="true">
                         <label>
                             Website
-                            <input tabIndex={-1} autoComplete="off" value={form.data.website} onChange={(e) => form.setData('website', e.target.value)} />
+                            <input
+                                tabIndex={-1}
+                                autoComplete="off"
+                                value={form.data.website}
+                                onChange={(e) => form.setData('website', e.target.value)}
+                            />
                         </label>
                     </div>
 
@@ -153,8 +170,8 @@ export function PurchaseDialog({ item, onClose, token, ownerName, isRegistry, st
 
                     <p className="text-muted-foreground flex gap-2 text-xs leading-relaxed">
                         <Lock className="mt-0.5 size-3.5 shrink-0" />
-                        We’ll email you a confirmation with a private link to change or undo this. {ownerName ?? 'The list owner'} can see your name and order number
-                        (for returns) only if they’ve chosen not to keep this item a surprise.
+                        We’ll email you a confirmation with a private link to change or undo this. {ownerName ?? 'The list owner'} can see your name
+                        and order number (for returns) only if they’ve chosen not to keep this item a surprise.
                     </p>
 
                     <DialogFooter className="gap-2">

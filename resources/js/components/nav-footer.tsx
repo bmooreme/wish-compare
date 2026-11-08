@@ -15,10 +15,7 @@ export function NavFooter({
                 <SidebarMenu>
                     {items.map((item) => (
                         <SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton
-                                asChild
-                                className="text-muted-foreground hover:text-foreground"
-                            >
+                            <SidebarMenuButton asChild className="text-muted-foreground hover:text-foreground">
                                 <a href={item.url}>
                                     {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
                                     <span>{item.title}</span>

@@ -59,7 +59,9 @@ export default function ListSettings({ list }: Props) {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <p className="font-medium">Delete this list</p>
-                            <p className="text-muted-foreground text-sm">Removes the list, its items and all purchase records. This can’t be undone.</p>
+                            <p className="text-muted-foreground text-sm">
+                                Removes the list, its items and all purchase records. This can’t be undone.
+                            </p>
                         </div>
                         <Dialog>
                             <DialogTrigger asChild>

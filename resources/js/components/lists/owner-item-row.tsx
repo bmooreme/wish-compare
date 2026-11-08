@@ -7,7 +7,19 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { cn } from '@/lib/utils';
 import { type OwnerItem } from '@/types';
 import { router, useForm } from '@inertiajs/react';
-import { ChevronDown, ExternalLink, Eye, EyeOff, GripVertical, Heart, LoaderCircle, MoreHorizontal, PackageCheck, Pencil, Trash2 } from 'lucide-react';
+import {
+    ChevronDown,
+    ExternalLink,
+    Eye,
+    EyeOff,
+    GripVertical,
+    Heart,
+    LoaderCircle,
+    MoreHorizontal,
+    PackageCheck,
+    Pencil,
+    Trash2,
+} from 'lucide-react';
 import { useState, type DragEvent } from 'react';
 
 interface Props {
@@ -45,7 +57,11 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
             )}
         >
             <div className="flex gap-3 p-3 sm:gap-4 sm:p-4">
-                <div className="text-muted-foreground/50 hover:text-muted-foreground hidden cursor-grab items-center sm:flex" title="Drag to reorder" aria-hidden="true">
+                <div
+                    className="text-muted-foreground/50 hover:text-muted-foreground hidden cursor-grab items-center sm:flex"
+                    title="Drag to reorder"
+                    aria-hidden="true"
+                >
                     <GripVertical className="size-5" />
                 </div>
                 <ItemImage src={item.image_url} alt={item.title} className="size-20 shrink-0 rounded-xl sm:size-24" />
@@ -54,7 +70,9 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                         <div className="min-w-0">
                             <div className="mb-1 flex flex-wrap items-center gap-2">
                                 {item.most_wanted && <MostWantedBadge />}
-                                {item.store_name && <span className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{item.store_name}</span>}
+                                {item.store_name && (
+                                    <span className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{item.store_name}</span>
+                                )}
                             </div>
                             <h3 className="line-clamp-2 leading-snug font-medium">{item.title}</h3>
                             {item.notes && <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">{item.notes}</p>}
@@ -103,7 +121,9 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                             onClick={() => patch({ show_status: !item.show_status })}
                             className={cn(
                                 'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition',
-                                item.show_status ? 'border-primary/30 bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground',
+                                item.show_status
+                                    ? 'border-primary/30 bg-accent text-accent-foreground'
+                                    : 'text-muted-foreground hover:text-foreground',
                             )}
                             title={item.show_status ? 'Hide purchase status from me (keep it a surprise)' : 'Show me whether this was purchased'}
                         >
@@ -112,7 +132,11 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                         </button>
                         {item.status && <StatusPill item={item} />}
                         {item.status && item.purchases.length > 0 && (
-                            <button type="button" onClick={() => setShowPurchases((v) => !v)} className="text-primary inline-flex items-center gap-1 text-xs font-medium hover:underline">
+                            <button
+                                type="button"
+                                onClick={() => setShowPurchases((v) => !v)}
+                                className="text-primary inline-flex items-center gap-1 text-xs font-medium hover:underline"
+                            >
                                 Purchase details <ChevronDown className={cn('size-3.5 transition', showPurchases && 'rotate-180')} />
                             </button>
                         )}
@@ -152,7 +176,10 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                         <DialogClose asChild>
                             <Button variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button variant="destructive" onClick={() => router.delete(route('items.destroy', [listId, item.id]), { preserveScroll: true })}>
+                        <Button
+                            variant="destructive"
+                            onClick={() => router.delete(route('items.destroy', [listId, item.id]), { preserveScroll: true })}
+                        >
                             Remove item
                         </Button>
                     </DialogFooter>
@@ -181,7 +208,19 @@ function StatusPill({ item }: { item: OwnerItem }) {
     return <span className="bg-muted text-muted-foreground rounded-full px-2.5 py-1 text-xs font-medium">Not purchased yet</span>;
 }
 
-function EditItemDialog({ open, onOpenChange, item, listId, isRegistry }: { open: boolean; onOpenChange: (v: boolean) => void; item: OwnerItem; listId: number; isRegistry: boolean }) {
+function EditItemDialog({
+    open,
+    onOpenChange,
+    item,
+    listId,
+    isRegistry,
+}: {
+    open: boolean;
+    onOpenChange: (v: boolean) => void;
+    item: OwnerItem;
+    listId: number;
+    isRegistry: boolean;
+}) {
     const form = useForm<ItemFormData>({
         title: item.title,
         url: item.url ?? '',

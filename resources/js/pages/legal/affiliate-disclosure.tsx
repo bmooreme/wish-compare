@@ -8,8 +8,8 @@ export default function AffiliateDisclosure() {
     return (
         <LegalPage title="Affiliate disclosure" updated="November 8, 2026">
             <p>
-                {name} is free to use. To keep it that way, some links to stores on {name} are <strong>affiliate links</strong>. When you buy something after clicking one
-                of these links, the store may pay us a small commission.
+                {name} is free to use. To keep it that way, some links to stores on {name} are <strong>affiliate links</strong>. When you buy
+                something after clicking one of these links, the store may pay us a small commission.
             </p>
             <ul>
                 <li>You pay exactly the same price you would otherwise pay.</li>
@@ -20,8 +20,8 @@ export default function AffiliateDisclosure() {
             <p>As an Amazon Associate, {name} earns from qualifying purchases.</p>
             <h2>Other programs</h2>
             <p>
-                We may also participate in affiliate programs run by Walmart, Target, Best Buy, Barnes &amp; Noble and other retailers, directly or through networks such as
-                Impact, CJ, Rakuten, Awin, Sovrn or Skimlinks.
+                We may also participate in affiliate programs run by Walmart, Target, Best Buy, Barnes &amp; Noble and other retailers, directly or
+                through networks such as Impact, CJ, Rakuten, Awin, Sovrn or Skimlinks.
             </p>
         </LegalPage>
     );

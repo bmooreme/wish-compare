@@ -11,7 +11,7 @@ export default function PublicLayout({ children, showDisclosure = false }: Props
 
     return (
         <div className="bg-background text-foreground flex min-h-dvh flex-col">
-            <header className="bg-background/80 supports-[backdrop-filter]:bg-background/65 sticky top-0 z-40 border-b border-transparent backdrop-blur-lg [&:not(:first-child)]:border-border">
+            <header className="bg-background/80 supports-[backdrop-filter]:bg-background/65 [&:not(:first-child)]:border-border sticky top-0 z-40 border-b border-transparent backdrop-blur-lg">
                 <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
                     <Link href={route('home')} aria-label={`${name} home`}>
                         <BrandWordmark />
@@ -65,7 +65,9 @@ export default function PublicLayout({ children, showDisclosure = false }: Props
                         <Link href={route('legal.terms')} className="hover:text-foreground">
                             Terms
                         </Link>
-                        <span>© {new Date().getFullYear()} {name}</span>
+                        <span>
+                            © {new Date().getFullYear()} {name}
+                        </span>
                     </nav>
                 </div>
             </footer>

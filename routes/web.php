@@ -10,6 +10,30 @@ use Inertia\Inertia;
 
 Route::get('/', fn () => Inertia::render('welcome'))->name('home');
 
+// Web app manifest (dynamic so the app name follows APP_NAME)
+Route::get('manifest.webmanifest', function () {
+    return response()->json([
+        'name' => config('app.name'),
+        'short_name' => config('app.name'),
+        'description' => 'Wish lists and gift registries that work with every store.',
+        'start_url' => '/dashboard?source=pwa',
+        'scope' => '/',
+        'display' => 'standalone',
+        'background_color' => '#fbf9f6',
+        'theme_color' => '#4c2fa0',
+        'categories' => ['shopping', 'lifestyle'],
+        'icons' => [
+            ['src' => '/icons/icon-192.png', 'sizes' => '192x192', 'type' => 'image/png'],
+            ['src' => '/icons/icon-512.png', 'sizes' => '512x512', 'type' => 'image/png'],
+            ['src' => '/icons/icon-maskable-512.png', 'sizes' => '512x512', 'type' => 'image/png', 'purpose' => 'maskable'],
+        ],
+        'shortcuts' => [
+            ['name' => 'My lists', 'url' => '/dashboard?source=pwa'],
+            ['name' => 'Find a list', 'url' => '/find?source=pwa'],
+        ],
+    ], 200, ['Content-Type' => 'application/manifest+json']);
+})->name('manifest');
+
 // Legal & info pages
 Route::get('privacy', fn () => Inertia::render('legal/privacy'))->name('legal.privacy');
 Route::get('terms', fn () => Inertia::render('legal/terms'))->name('legal.terms');

@@ -13,7 +13,10 @@ export function PrivacyBadge({ privacy, className }: { privacy: Privacy; classNa
     const Icon = meta.icon;
 
     return (
-        <span title={meta.hint} className={cn('inline-flex items-center gap-1 rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10', className)}>
+        <span
+            title={meta.hint}
+            className={cn('inline-flex items-center gap-1 rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10', className)}
+        >
             <Icon className="size-3" /> {meta.label}
         </span>
     );
@@ -21,7 +24,12 @@ export function PrivacyBadge({ privacy, className }: { privacy: Privacy; classNa
 
 export function TypeBadge({ type, className }: { type: ListType; className?: string }) {
     return (
-        <span className={cn('inline-flex items-center rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-semibold tracking-wide text-black/70 uppercase backdrop-blur', className)}>
+        <span
+            className={cn(
+                'inline-flex items-center rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-semibold tracking-wide text-black/70 uppercase backdrop-blur',
+                className,
+            )}
+        >
             {type === 'registry' ? 'Registry' : 'Wish list'}
         </span>
     );
@@ -29,7 +37,12 @@ export function TypeBadge({ type, className }: { type: ListType; className?: str
 
 export function MostWantedBadge({ className }: { className?: string }) {
     return (
-        <span className={cn('bg-brand text-brand-foreground inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold shadow-sm', className)}>
+        <span
+            className={cn(
+                'bg-brand text-brand-foreground inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold shadow-sm',
+                className,
+            )}
+        >
             <Heart className="size-3 fill-current" /> Most wanted
         </span>
     );

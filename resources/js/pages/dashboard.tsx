@@ -62,7 +62,9 @@ function ListCard({ list }: { list: ListSummary }) {
             <ListCover themeKey={list.theme} className="h-32 p-4">
                 <div className="flex items-start justify-between">
                     <TypeBadge type={list.type} />
-                    {countdown && <span className="rounded-full bg-black/25 px-2.5 py-0.5 text-xs font-medium text-white backdrop-blur">{countdown}</span>}
+                    {countdown && (
+                        <span className="rounded-full bg-black/25 px-2.5 py-0.5 text-xs font-medium text-white backdrop-blur">{countdown}</span>
+                    )}
                 </div>
             </ListCover>
             <div className="flex flex-1 flex-col gap-3 p-5">
@@ -118,7 +120,9 @@ function EmptyState() {
         <div className="rounded-3xl border border-dashed p-6 md:p-10">
             <div className="mx-auto max-w-xl text-center">
                 <h2 className="font-display text-2xl font-medium">Create your first list</h2>
-                <p className="text-muted-foreground mt-2">Add items from any online store, share one link, and let friends and family take it from there.</p>
+                <p className="text-muted-foreground mt-2">
+                    Add items from any online store, share one link, and let friends and family take it from there.
+                </p>
             </div>
             <div className="mx-auto mt-8 grid max-w-3xl gap-4 md:grid-cols-2">
                 {options.map(({ type, title, description, icon: Icon, theme }) => (

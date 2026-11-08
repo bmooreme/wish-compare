@@ -90,7 +90,11 @@ export function AddItem({ listId, isRegistry }: { listId: number; isRegistry: bo
                     </form>
                     <p className="text-muted-foreground text-sm">
                         We’ll grab the name and photo for you.{' '}
-                        <button type="button" onClick={startManual} className="text-primary inline-flex items-center gap-1 font-medium hover:underline">
+                        <button
+                            type="button"
+                            onClick={startManual}
+                            className="text-primary inline-flex items-center gap-1 font-medium hover:underline"
+                        >
                             <PencilLine className="size-3.5" /> Or add one by hand
                         </button>
                     </p>

@@ -1,5 +1,5 @@
-import { Field } from '@/components/lists/list-form';
 import { ListCover } from '@/components/lists/list-cover';
+import { Field } from '@/components/lists/list-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import PublicLayout from '@/layouts/public-layout';
@@ -35,11 +35,19 @@ export default function LockedList({ list }: Props) {
                         <div className="text-center">
                             <h1 className="font-display text-2xl font-medium">{list.title}</h1>
                             <p className="text-muted-foreground mt-1 text-sm">
-                                {list.owner_name ? `${list.owner_name} protected this list with a password.` : 'This list is password protected.'} Enter it to continue.
+                                {list.owner_name ? `${list.owner_name} protected this list with a password.` : 'This list is password protected.'}{' '}
+                                Enter it to continue.
                             </p>
                         </div>
                         <Field label="Password" htmlFor="password" error={errors.password}>
-                            <Input id="password" type="password" autoFocus required value={data.password} onChange={(e) => setData('password', e.target.value)} />
+                            <Input
+                                id="password"
+                                type="password"
+                                autoFocus
+                                required
+                                value={data.password}
+                                onChange={(e) => setData('password', e.target.value)}
+                            />
                         </Field>
                         <Button type="submit" className="w-full" size="lg" disabled={processing}>
                             {processing && <LoaderCircle className="animate-spin" />} Open list

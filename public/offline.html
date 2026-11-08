@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're offline</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; min-height: 100dvh; display: grid; place-items: center; font-family: ui-sans-serif, system-ui, sans-serif; background: #fbf9f6; color: #1d1830; }
+  @media (prefers-color-scheme: dark) { body { background: #120f1c; color: #f4f1ec; } p { color: #a9a3b8 !important; } }
+  main { text-align: center; padding: 2rem; max-width: 26rem; }
+  img { width: 64px; height: 64px; border-radius: 16px; }
+  h1 { font-family: Georgia, serif; font-weight: 500; font-size: 1.75rem; margin: 1.25rem 0 .5rem; }
+  p { color: #6b6580; line-height: 1.6; margin: 0 0 1.5rem; }
+  button { font: inherit; font-weight: 600; border: 0; border-radius: .6rem; padding: .7rem 1.25rem; background: #4c2fa0; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <img src="/icons/icon-192.png" alt="">
+  <h1>You’re offline</h1>
+  <p>Check your connection and try again. Your lists are safe and will be right here when you’re back online.</p>
+  <button onclick="location.reload()">Try again</button>
+</main>
+</body>
+</html>

@@ -1,7 +1,7 @@
+import { ShareButton } from '@/components/lists/copy-link';
 import { GuestItemCard } from '@/components/lists/guest-item-card';
 import { ListCover } from '@/components/lists/list-cover';
 import { PurchaseDialog } from '@/components/lists/purchase-dialog';
-import { ShareButton } from '@/components/lists/copy-link';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import PublicLayout from '@/layouts/public-layout';
@@ -67,7 +67,8 @@ export default function SharedList({ list, items, isOwner, stores, turnstileSite
                 <div className="bg-foreground text-background">
                     <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
                         <p className="flex items-center gap-2">
-                            <Eye className="size-4 shrink-0" /> You’re previewing your list as guests see it. Items with hidden status always look available to you.
+                            <Eye className="size-4 shrink-0" /> You’re previewing your list as guests see it. Items with hidden status always look
+                            available to you.
                         </p>
                         <Link href={route('dashboard')} className="font-semibold underline-offset-4 hover:underline">
                             Back to editing
@@ -85,11 +86,14 @@ export default function SharedList({ list, items, isOwner, stores, turnstileSite
                     <h1 className="font-display mx-auto mt-3 max-w-3xl text-4xl leading-tight font-medium text-balance md:text-6xl">{list.title}</h1>
                     {list.event_date && (
                         <p className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 text-sm font-medium opacity-85">
-                            <CalendarDays className="size-4" /> {formatDate(list.event_date, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                            <CalendarDays className="size-4" />{' '}
+                            {formatDate(list.event_date, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
                             {countdown && <span className="rounded-full bg-black/10 px-2.5 py-0.5">{countdown}</span>}
                         </p>
                     )}
-                    {list.description && <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed whitespace-pre-line opacity-90">{list.description}</p>}
+                    {list.description && (
+                        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed whitespace-pre-line opacity-90">{list.description}</p>
+                    )}
                     <div className="mt-8 flex flex-wrap justify-center gap-3">
                         <ShareButton url={list.share_url} title={list.title} className="bg-white/85 text-black shadow-sm hover:bg-white" />
                         {list.has_shipping_address && <ShippingAddressButton token={list.token} />}
@@ -112,7 +116,10 @@ export default function SharedList({ list, items, isOwner, stores, turnstileSite
                             <button
                                 key={key}
                                 onClick={() => setFilter(key)}
-                                className={cn('rounded-full px-4 py-1.5 font-medium transition', filter === key ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground')}
+                                className={cn(
+                                    'rounded-full px-4 py-1.5 font-medium transition',
+                                    filter === key ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground',
+                                )}
                             >
                                 {label} <span className="text-muted-foreground ml-0.5">{counts[key]}</span>
                             </button>
@@ -123,7 +130,9 @@ export default function SharedList({ list, items, isOwner, stores, turnstileSite
                 {visible.length === 0 ? (
                     <div className="rounded-2xl border border-dashed p-14 text-center">
                         <Sparkles className="text-muted-foreground/50 mx-auto size-10" strokeWidth={1.25} />
-                        <p className="mt-3 font-medium">{items.length === 0 ? 'This list is still being put together.' : 'Nothing here right now.'}</p>
+                        <p className="mt-3 font-medium">
+                            {items.length === 0 ? 'This list is still being put together.' : 'Nothing here right now.'}
+                        </p>
                         <p className="text-muted-foreground mt-1 text-sm">{items.length === 0 ? 'Check back soon!' : 'Try another filter.'}</p>
                     </div>
                 ) : (
@@ -203,7 +212,14 @@ function ShippingAddressButton({ token }: { token: string }) {
         setLoading(false);
     };
 
-    const lines = address ? [address.name, address.line1, address.line2, [address.city, [address.state, address.postal_code].filter(Boolean).join(' ')].filter(Boolean).join(', ')].filter(Boolean) : [];
+    const lines = address
+        ? [
+              address.name,
+              address.line1,
+              address.line2,
+              [address.city, [address.state, address.postal_code].filter(Boolean).join(' ')].filter(Boolean).join(', '),
+          ].filter(Boolean)
+        : [];
 
     return (
         <>

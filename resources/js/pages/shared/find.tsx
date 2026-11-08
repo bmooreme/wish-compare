@@ -37,7 +37,13 @@ export default function FindList({ q, results }: { q: string; results: Result[] 
                     >
                         <div className="relative flex-1">
                             <Search className="text-muted-foreground absolute top-1/2 left-3.5 size-4 -translate-y-1/2" />
-                            <Input value={term} onChange={(e) => setTerm(e.target.value)} placeholder="e.g. Jordan Rivera" className="h-12 rounded-full pl-10" aria-label="Search lists" />
+                            <Input
+                                value={term}
+                                onChange={(e) => setTerm(e.target.value)}
+                                placeholder="e.g. Jordan Rivera"
+                                className="h-12 rounded-full pl-10"
+                                aria-label="Search lists"
+                            />
                         </div>
                         <Button type="submit" size="lg" className="h-12 rounded-full px-6">
                             Search
@@ -49,12 +55,18 @@ export default function FindList({ q, results }: { q: string; results: Result[] 
             <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
                 {q.length >= 2 && (
                     <p className="text-muted-foreground mb-5 text-sm">
-                        {results.length === 0 ? `No public lists match “${q}”. If you have a link, you can open it directly.` : `${results.length} ${results.length === 1 ? 'list' : 'lists'} found`}
+                        {results.length === 0
+                            ? `No public lists match “${q}”. If you have a link, you can open it directly.`
+                            : `${results.length} ${results.length === 1 ? 'list' : 'lists'} found`}
                     </p>
                 )}
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {results.map((r) => (
-                        <a key={r.share_url} href={r.share_url} className="bg-card group overflow-hidden rounded-2xl border transition hover:-translate-y-0.5 hover:shadow-lg">
+                        <a
+                            key={r.share_url}
+                            href={r.share_url}
+                            className="bg-card group overflow-hidden rounded-2xl border transition hover:-translate-y-0.5 hover:shadow-lg"
+                        >
                             <ListCover themeKey={r.theme} className="h-24 p-4">
                                 <TypeBadge type={r.type} />
                             </ListCover>
@@ -64,7 +76,8 @@ export default function FindList({ q, results }: { q: string; results: Result[] 
                                 <div className="text-muted-foreground mt-3 flex items-center gap-3 text-xs">
                                     {r.event_date && (
                                         <span className="flex items-center gap-1">
-                                            <CalendarDays className="size-3.5" /> {formatDate(r.event_date, { month: 'short', day: 'numeric', year: 'numeric' })}
+                                            <CalendarDays className="size-3.5" />{' '}
+                                            {formatDate(r.event_date, { month: 'short', day: 'numeric', year: 'numeric' })}
                                         </span>
                                     )}
                                     <span>{r.items_count} items</span>

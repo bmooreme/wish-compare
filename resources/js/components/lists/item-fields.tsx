@@ -33,16 +33,39 @@ export function ItemFields({ data, setData, errors, isRegistry, idPrefix, showUr
             </Field>
             {showUrl && (
                 <Field label="Product link" hint="Optional" htmlFor={`${idPrefix}-url`} error={errors.url} className="sm:col-span-6">
-                    <Input id={`${idPrefix}-url`} type="url" value={data.url} onChange={(e) => setData('url', e.target.value)} placeholder="https://" />
+                    <Input
+                        id={`${idPrefix}-url`}
+                        type="url"
+                        value={data.url}
+                        onChange={(e) => setData('url', e.target.value)}
+                        placeholder="https://"
+                    />
                 </Field>
             )}
             <Field label="Image link" hint="Optional" htmlFor={`${idPrefix}-image`} error={errors.image_url} className="sm:col-span-4">
-                <Input id={`${idPrefix}-image`} type="url" value={data.image_url} onChange={(e) => setData('image_url', e.target.value)} placeholder="https://" />
+                <Input
+                    id={`${idPrefix}-image`}
+                    type="url"
+                    value={data.image_url}
+                    onChange={(e) => setData('image_url', e.target.value)}
+                    placeholder="https://"
+                />
             </Field>
             <Field label="UPC / ISBN" hint="Optional" htmlFor={`${idPrefix}-identifier`} error={errors.identifier} className="sm:col-span-2">
-                <Input id={`${idPrefix}-identifier`} value={data.identifier} onChange={(e) => setData('identifier', e.target.value)} inputMode="numeric" />
+                <Input
+                    id={`${idPrefix}-identifier`}
+                    value={data.identifier}
+                    onChange={(e) => setData('identifier', e.target.value)}
+                    inputMode="numeric"
+                />
             </Field>
-            <Field label="Notes for gift givers" hint="Size, color, edition…" htmlFor={`${idPrefix}-notes`} error={errors.notes} className="sm:col-span-6">
+            <Field
+                label="Notes for gift givers"
+                hint="Size, color, edition…"
+                htmlFor={`${idPrefix}-notes`}
+                error={errors.notes}
+                className="sm:col-span-6"
+            >
                 <Textarea id={`${idPrefix}-notes`} rows={2} value={data.notes} onChange={(e) => setData('notes', e.target.value)} maxLength={1000} />
             </Field>
             {isRegistry && (
@@ -57,7 +80,10 @@ export function ItemFields({ data, setData, errors, isRegistry, idPrefix, showUr
                     />
                 </Field>
             )}
-            <label htmlFor={`${idPrefix}-mw`} className="bg-brand-soft/60 flex cursor-pointer items-center justify-between gap-4 rounded-xl px-4 py-3 sm:col-span-6">
+            <label
+                htmlFor={`${idPrefix}-mw`}
+                className="bg-brand-soft/60 flex cursor-pointer items-center justify-between gap-4 rounded-xl px-4 py-3 sm:col-span-6"
+            >
                 <span className="flex items-center gap-2 text-sm font-medium">
                     <Heart className="text-brand size-4 fill-current" /> Mark as most wanted
                 </span>
