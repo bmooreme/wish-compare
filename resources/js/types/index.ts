@@ -25,6 +25,7 @@ export interface SharedData {
     name: string;
     auth: Auth;
     flash: { success?: string | null };
+    features: { imageSearch: boolean };
     [key: string]: unknown;
 }
 

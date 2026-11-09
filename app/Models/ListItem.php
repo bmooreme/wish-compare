@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Services\Retailers;
 use Database\Factories\ListItemFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +36,14 @@ class ListItem extends Model
             'show_status' => 'boolean',
             'position' => 'integer',
         ];
+    }
+
+    /** Amazon-hosted photos are dropped; the item shows a placeholder instead. */
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            set: fn (?string $value) => $value && ! app(Retailers::class)->isAmazonImage($value) ? $value : null,
+        );
     }
 
     public function list(): BelongsTo

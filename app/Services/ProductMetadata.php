@@ -45,7 +45,7 @@ class ProductMetadata
         $parsed = $this->parse($html, $finalUrl);
 
         $result['title'] = $parsed['title'];
-        $result['image_url'] = $parsed['image_url'];
+        $result['image_url'] = $this->retailers->isAmazonImage($parsed['image_url']) ? null : $parsed['image_url'];
         $result['identifier'] = $parsed['identifier'];
         $result['store_key'] ??= $this->retailers->detect($finalUrl);
         $result['store_name'] = $this->retailers->labelFor($finalUrl, $result['store_key']);

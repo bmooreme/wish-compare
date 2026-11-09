@@ -25,7 +25,7 @@ class AmazonListParserTest extends TestCase
 
         $this->assertSame('Echo Dot (3rd Gen) - Smart speaker with Alexa - Charcoal', $echo['title']);
         $this->assertSame('https://www.amazon.com/dp/B07FZ8S74R', $echo['url']);
-        $this->assertSame('https://m.media-amazon.com/images/I/6182S7MYC2L.jpg', $echo['image_url']);
+        $this->assertNull($echo['image_url'], 'Amazon photos are never imported');
         $this->assertSame(2, $echo['quantity']);
         $this->assertTrue($echo['most_wanted']);
         $this->assertSame('Charcoal, not white', $echo['notes']);
@@ -42,12 +42,9 @@ class AmazonListParserTest extends TestCase
         $this->assertNotContains('B000000000', array_column($items, 'asin'));
     }
 
-    public function test_items_without_an_amazon_image_still_import(): void
+    public function test_items_without_a_link_title_use_the_link_text(): void
     {
-        $airpods = $this->items()[2];
-
-        $this->assertSame('Apple AirPods Pro (2nd Generation)', $airpods['title']);
-        $this->assertNull($airpods['image_url']);
+        $this->assertSame('Apple AirPods Pro (2nd Generation)', $this->items()[2]['title']);
     }
 
     public function test_plain_text_links_are_parsed_with_titles_from_the_url(): void

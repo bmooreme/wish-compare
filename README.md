@@ -24,6 +24,13 @@ mark the gift purchased with their order number.
   on that list are skipped. On phones, users can paste Amazon product links instead. Wishlark never
   fetches Amazon pages itself: Amazon's terms forbid scraping, and doing it could get the
   affiliate account closed.
+- **Product photos:** Amazon-hosted photos are never stored or shown, because Amazon only allows
+  its product images through its own affiliate API. Items without a photo show a gift-box
+  placeholder. Once a Best Buy or Walmart API key is configured, owners get a **Choose a photo**
+  picker. It searches those retailers' catalogs by UPC or a cleaned-up product name (e.g.
+  "KitchenAid Artisan KSM150PS 5-Quart Stand Mixer (Red), Pack of 1" becomes
+  "KitchenAid Artisan KSM150PS 5-Quart Stand Mixer"), and the owner chooses the matching photo.
+  Nothing is attached automatically.
 - **Shopping:** every item gets a "Buy at…" button for the original store plus Amazon, Walmart,
   Target and Best Buy (and Barnes & Noble for books). All links pass through `/go/{item}/{store}`,
   which adds affiliate tags and counts clicks.
@@ -109,7 +116,17 @@ tagged yet.
 | `<STORE>_AFFILIATE_TEMPLATE` | Any store in `config/stores.php`, e.g. `ETSY_AFFILIATE_TEMPLATE` |
 | `AFFILIATE_FALLBACK_TEMPLATE` | Sovrn Commerce / Skimlinks wrapper for every other store |
 
-`{url}` is replaced with the URL-encoded destination. To add or remove stores, edit
+`{url}` is replaced with the URL-encoded destination.
+
+### Photo search keys
+
+| Variable | Where to get it |
+| --- | --- |
+| `BESTBUY_API_KEY` | Free developer key from developer.bestbuy.com |
+| `WALMART_CONSUMER_ID`, `WALMART_KEY_VERSION`, `WALMART_PRIVATE_KEY_PATH`, `WALMART_PUBLISHER_ID` | walmart.io, after Walmart affiliate approval. Generate an RSA key pair, upload the public key there, and keep the private key file outside `public/`. |
+
+Either one switches on the "Choose a photo" picker. Review each program's rules on displaying
+its images, such as linking the image back to the store. To add or remove stores, edit
 `config/stores.php`.
 
 ## Launch checklist
@@ -118,4 +135,5 @@ tagged yet.
 - [ ] Have the privacy policy and terms (`resources/js/pages/legal/`) reviewed by a qualified professional.
 - [ ] Apply to the affiliate programs once the site is live, then fill in `.env`.
 - [ ] Optional: add Cloudflare Turnstile keys for extra spam protection.
+- [ ] Add a Best Buy and/or Walmart API key to switch on photo search.
 - [ ] Set up SMTP and send a test purchase to confirm both emails arrive.

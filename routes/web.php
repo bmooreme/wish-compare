@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Lists\AmazonImportController;
 use App\Http\Controllers\Lists\GiftListController;
+use App\Http\Controllers\Lists\ImageSearchController;
 use App\Http\Controllers\Lists\ListItemController;
 use App\Http\Controllers\Shared\OutboundController;
 use App\Http\Controllers\Shared\PublicListController;
@@ -66,6 +67,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('import/amazon', [AmazonImportController::class, 'store'])
         ->middleware('throttle:10,1')
         ->name('import.amazon.store');
+
+    Route::post('image-search', ImageSearchController::class)
+        ->middleware('throttle:30,1')
+        ->name('images.search');
 
     Route::post('item-preview', [ListItemController::class, 'preview'])
         ->middleware('throttle:30,1')

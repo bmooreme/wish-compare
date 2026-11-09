@@ -58,4 +58,15 @@ class RetailersTest extends TestCase
         $this->assertSame('target', $keys[0]);
         $this->assertSame(1, array_count_values($keys)['target']);
     }
+
+    public function test_it_recognises_amazon_hosted_images(): void
+    {
+        $r = app(Retailers::class);
+
+        $this->assertTrue($r->isAmazonImage('https://m.media-amazon.com/images/I/6182S7MYC2L.jpg'));
+        $this->assertTrue($r->isAmazonImage('https://images-na.ssl-images-amazon.com/images/I/x.jpg'));
+        $this->assertFalse($r->isAmazonImage('https://pisces.bbystatic.com/image2/mixer.jpg'));
+        $this->assertFalse($r->isAmazonImage('https://notamazon.com/x.jpg'));
+        $this->assertFalse($r->isAmazonImage(null));
+    }
 }

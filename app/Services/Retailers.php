@@ -59,6 +59,17 @@ class Retailers
         return $host ? Str::of($host)->replaceStart('www.', '')->toString() : null;
     }
 
+    /**
+     * Amazon product photos may only be shown when they come through Amazon's
+     * own affiliate API, so we never store photos hosted on Amazon's servers.
+     */
+    public function isAmazonImage(?string $url): bool
+    {
+        $host = $this->host($url);
+
+        return $host !== null && (bool) preg_match('/(^|\.)(media-amazon\.com|ssl-images-amazon\.com|images-amazon\.com|amazon\.com)$/', $host);
+    }
+
     public function isBook(ListItem $item): bool
     {
         $id = preg_replace('/[^0-9X]/i', '', (string) $item->identifier);

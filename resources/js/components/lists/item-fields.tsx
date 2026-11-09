@@ -1,8 +1,11 @@
 import { Field } from '@/components/lists/list-form';
+import { PhotoPicker, usePhotoSearch } from '@/components/lists/photo-picker';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-import { Heart } from 'lucide-react';
+import { Heart, ImagePlus } from 'lucide-react';
+import { useState } from 'react';
 
 export type ItemFormData = {
     title: string;
@@ -26,6 +29,9 @@ interface Props {
 }
 
 export function ItemFields({ data, setData, errors, isRegistry, idPrefix, showUrl = true }: Props) {
+    const photoSearch = usePhotoSearch();
+    const [picking, setPicking] = useState(false);
+
     return (
         <div className="grid gap-4 sm:grid-cols-6">
             <Field label="Item name" htmlFor={`${idPrefix}-title`} error={errors.title} className="sm:col-span-6">
@@ -43,13 +49,30 @@ export function ItemFields({ data, setData, errors, isRegistry, idPrefix, showUr
                 </Field>
             )}
             <Field label="Image link" hint="Optional" htmlFor={`${idPrefix}-image`} error={errors.image_url} className="sm:col-span-4">
-                <Input
-                    id={`${idPrefix}-image`}
-                    type="url"
-                    value={data.image_url}
-                    onChange={(e) => setData('image_url', e.target.value)}
-                    placeholder="https://"
-                />
+                <div className="flex gap-2">
+                    <Input
+                        id={`${idPrefix}-image`}
+                        type="url"
+                        value={data.image_url}
+                        onChange={(e) => setData('image_url', e.target.value)}
+                        placeholder="https://"
+                    />
+                    {photoSearch && (
+                        <Button type="button" variant="outline" onClick={() => setPicking(true)} disabled={!data.title.trim()} className="shrink-0">
+                            <ImagePlus /> Find a photo
+                        </Button>
+                    )}
+                </div>
+                {photoSearch && (
+                    <PhotoPicker
+                        open={picking}
+                        onOpenChange={setPicking}
+                        title={data.title}
+                        identifier={data.identifier}
+                        current={data.image_url || null}
+                        onSelect={(url) => setData('image_url', url ?? '')}
+                    />
+                )}
             </Field>
             <Field label="UPC / ISBN" hint="Optional" htmlFor={`${idPrefix}-identifier`} error={errors.identifier} className="sm:col-span-2">
                 <Input

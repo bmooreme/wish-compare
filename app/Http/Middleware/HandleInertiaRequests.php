@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\Images\ProductImageSearch;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -40,6 +41,9 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'features' => [
+                'imageSearch' => fn () => $request->user() !== null && app(ProductImageSearch::class)->enabled(),
             ],
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),

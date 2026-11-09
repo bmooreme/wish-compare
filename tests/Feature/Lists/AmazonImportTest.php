@@ -70,6 +70,7 @@ class AmazonImportTest extends TestCase
         $this->assertSame(2, $echo->quantity);
         $this->assertTrue($echo->most_wanted);
         $this->assertSame('Charcoal', $echo->notes);
+        $this->assertNull($echo->image_url, 'Amazon-hosted photos are dropped');
         $this->assertSame(2, $list->items()->count());
     }
 

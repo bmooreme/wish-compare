@@ -83,7 +83,9 @@ class AmazonListParser
                 'asin' => $asin,
                 'title' => $title,
                 'url' => $this->canonicalUrl($asin),
-                'image_url' => $this->imageIn($container),
+                // Amazon photos can only be displayed via Amazon's affiliate API,
+                // so imports start with a placeholder; owners can pick a photo later.
+                'image_url' => null,
                 'quantity' => $this->quantity($containerText),
                 'most_wanted' => (bool) preg_match('/priority\s*:?\s*highest|\bmust have\b/i', $containerText),
                 'notes' => $this->comment($xpath, $container),
@@ -184,24 +186,6 @@ class AmazonListParser
         usort($candidates, fn ($a, $b) => mb_strlen($b) <=> mb_strlen($a));
 
         return Str::limit($candidates[0], 250, '');
-    }
-
-    private function imageIn(DOMNode $container): ?string
-    {
-        if (! $container instanceof DOMElement) {
-            return null;
-        }
-
-        foreach ($container->getElementsByTagName('img') as $img) {
-            $src = $img->getAttribute('src') ?: $img->getAttribute('data-src');
-
-            if (preg_match('~^https://(?:m\.media-amazon\.com|images-na\.ssl-images-amazon\.com|[a-z0-9-]+\.ssl-images-amazon\.com)/images/I/~i', $src)) {
-                // Drop Amazon's size modifiers (e.g. "._SS135_") for a sharper image.
-                return preg_replace('/\._[^\/]+_(\.[a-z]+)$/i', '$1', $src);
-            }
-        }
-
-        return null;
     }
 
     private function quantity(string $text): int

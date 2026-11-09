@@ -40,4 +40,17 @@ return [
         'secret_key' => env('TURNSTILE_SECRET_KEY'),
     ],
 
+    // Product photo search (retailer affiliate APIs)
+    'bestbuy' => [
+        'api_key' => env('BESTBUY_API_KEY'),
+    ],
+
+    'walmart' => [
+        'consumer_id' => env('WALMART_CONSUMER_ID'),
+        'key_version' => env('WALMART_KEY_VERSION', '1'),
+        'private_key_path' => env('WALMART_PRIVATE_KEY_PATH'),
+        'private_key' => env('WALMART_PRIVATE_KEY'),
+        'publisher_id' => env('WALMART_PUBLISHER_ID'),
+    ],
+
 ];

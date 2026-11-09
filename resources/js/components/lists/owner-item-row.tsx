@@ -1,6 +1,7 @@
 import { MostWantedBadge } from '@/components/lists/badges';
 import { ItemFields, type ItemFormData } from '@/components/lists/item-fields';
 import { ItemImage } from '@/components/lists/item-image';
+import { PhotoPicker, usePhotoSearch } from '@/components/lists/photo-picker';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -14,6 +15,7 @@ import {
     EyeOff,
     GripVertical,
     Heart,
+    ImagePlus,
     LoaderCircle,
     MoreHorizontal,
     PackageCheck,
@@ -41,8 +43,10 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
     const [editing, setEditing] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [showPurchases, setShowPurchases] = useState(false);
+    const [picking, setPicking] = useState(false);
+    const photoSearch = usePhotoSearch();
 
-    const patch = (data: Partial<Pick<OwnerItem, 'most_wanted' | 'show_status'>>) =>
+    const patch = (data: Partial<Pick<OwnerItem, 'most_wanted' | 'show_status' | 'image_url'>>) =>
         router.patch(route('items.update', [listId, item.id]), data, { preserveScroll: true, preserveState: true });
 
     const { isDragging, isOver, ...dnd } = dragProps;
@@ -64,7 +68,22 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                 >
                     <GripVertical className="size-5" />
                 </div>
-                <ItemImage src={item.image_url} alt={item.title} className="size-20 shrink-0 rounded-xl sm:size-24" />
+                {photoSearch && !item.image_url ? (
+                    <button
+                        type="button"
+                        onClick={() => setPicking(true)}
+                        className="group/photo relative shrink-0 rounded-xl"
+                        aria-label="Choose a photo"
+                        title="Choose a photo"
+                    >
+                        <ItemImage src={null} alt={item.title} className="size-20 rounded-xl sm:size-24" />
+                        <span className="bg-background/85 text-primary absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-semibold opacity-0 transition group-hover/photo:opacity-100 focus-visible:opacity-100">
+                            <ImagePlus className="size-5" /> Add photo
+                        </span>
+                    </button>
+                ) : (
+                    <ItemImage src={item.image_url} alt={item.title} className="size-20 shrink-0 rounded-xl sm:size-24" />
+                )}
                 <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
@@ -98,6 +117,11 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                                     <DropdownMenuItem onSelect={() => setEditing(true)}>
                                         <Pencil /> Edit
                                     </DropdownMenuItem>
+                                    {photoSearch && (
+                                        <DropdownMenuItem onSelect={() => setPicking(true)}>
+                                            <ImagePlus /> {item.image_url ? 'Change photo' : 'Choose a photo'}
+                                        </DropdownMenuItem>
+                                    )}
                                     {item.url && (
                                         <DropdownMenuItem asChild>
                                             <a href={item.url} target="_blank" rel="noopener noreferrer">
@@ -164,6 +188,17 @@ export function OwnerItemRow({ item, listId, isRegistry, dragProps }: Props) {
                         ))}
                     </ul>
                 </div>
+            )}
+
+            {photoSearch && (
+                <PhotoPicker
+                    open={picking}
+                    onOpenChange={setPicking}
+                    title={item.title}
+                    identifier={item.identifier}
+                    current={item.image_url}
+                    onSelect={(url) => patch({ image_url: url })}
+                />
             )}
 
             {editing && <EditItemDialog open={editing} onOpenChange={setEditing} item={item} listId={listId} isRegistry={isRegistry} />}
