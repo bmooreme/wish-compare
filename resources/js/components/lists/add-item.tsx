@@ -3,8 +3,8 @@ import { ItemImage } from '@/components/lists/item-image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { postJson } from '@/lib/format';
-import { useForm } from '@inertiajs/react';
-import { Link2, LoaderCircle, PencilLine, Plus, Wand2, X } from 'lucide-react';
+import { Link, useForm } from '@inertiajs/react';
+import { Download, Link2, LoaderCircle, PencilLine, Plus, Wand2, X } from 'lucide-react';
 import { useState, type FormEventHandler } from 'react';
 
 interface Preview {
@@ -97,6 +97,13 @@ export function AddItem({ listId, isRegistry }: { listId: number; isRegistry: bo
                         >
                             <PencilLine className="size-3.5" /> Or add one by hand
                         </button>
+                        <span className="mx-1.5">·</span>
+                        <Link
+                            href={route('import.amazon', { list: listId })}
+                            className="text-primary inline-flex items-center gap-1 font-medium hover:underline"
+                        >
+                            <Download className="size-3.5" /> Import from Amazon
+                        </Link>
                     </p>
                 </div>
             ) : (

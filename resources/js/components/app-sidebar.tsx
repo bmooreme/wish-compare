@@ -4,13 +4,14 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Gift, LayoutGrid, LifeBuoy, Plus, Search } from 'lucide-react';
+import { Download, Gift, LayoutGrid, LifeBuoy, Plus, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     { title: 'My lists', url: '/dashboard', icon: LayoutGrid },
     { title: 'New wish list', url: '/lists/create?type=wishlist', icon: Plus },
     { title: 'New registry', url: '/lists/create?type=registry', icon: Gift },
+    { title: 'Import from Amazon', url: '/import/amazon', icon: Download },
     { title: 'Find a list', url: '/find', icon: Search },
 ];
 

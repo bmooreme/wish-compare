@@ -6,7 +6,7 @@ import AppLayout from '@/layouts/app-layout';
 import { countdownLabel, formatDate } from '@/lib/format';
 import { type BreadcrumbItem, type ListSummary, type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { CalendarDays, Gift, Heart, ListChecks, Plus, Sparkles } from 'lucide-react';
+import { CalendarDays, Download, Gift, Heart, ListChecks, Plus, Sparkles } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'My lists', href: '/dashboard' }];
 
@@ -24,7 +24,12 @@ export default function Dashboard({ lists }: { lists: ListSummary[] }) {
                         <h1 className="font-display text-3xl font-medium tracking-tight md:text-4xl">My lists</h1>
                     </div>
                     {lists.length > 0 && (
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
+                            <Button variant="ghost" asChild>
+                                <Link href={route('import.amazon')}>
+                                    <Download /> Import from Amazon
+                                </Link>
+                            </Button>
                             <Button variant="outline" asChild>
                                 <Link href={route('lists.create', { type: 'registry' })}>
                                     <Gift /> New registry
@@ -144,6 +149,12 @@ function EmptyState() {
                     </Link>
                 ))}
             </div>
+            <p className="text-muted-foreground mt-6 text-center text-sm">
+                Already have a list on Amazon?{' '}
+                <Link href={route('import.amazon')} className="text-primary font-medium hover:underline">
+                    Import it in a minute
+                </Link>
+            </p>
         </div>
     );
 }

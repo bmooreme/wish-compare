@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Lists\AmazonImportController;
 use App\Http\Controllers\Lists\GiftListController;
 use App\Http\Controllers\Lists\ListItemController;
 use App\Http\Controllers\Shared\OutboundController;
@@ -57,6 +58,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('lists/{list}/items/{item}', [ListItemController::class, 'destroy'])->name('items.destroy');
     });
     Route::post('lists/{list}/items/reorder', [ListItemController::class, 'reorder'])->name('items.reorder');
+
+    Route::get('import/amazon', [AmazonImportController::class, 'create'])->name('import.amazon');
+    Route::post('import/amazon/parse', [AmazonImportController::class, 'parse'])
+        ->middleware('throttle:30,1')
+        ->name('import.amazon.parse');
+    Route::post('import/amazon', [AmazonImportController::class, 'store'])
+        ->middleware('throttle:10,1')
+        ->name('import.amazon.store');
 
     Route::post('item-preview', [ListItemController::class, 'preview'])
         ->middleware('throttle:30,1')

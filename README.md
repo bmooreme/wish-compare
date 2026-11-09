@@ -17,6 +17,13 @@ mark the gift purchased with their order number.
 - **Adding items:** paste a product link and the name, photo and UPC/ISBN are read from the
   page's Open Graph / schema.org data. Manual entry is always available. Flag any number of items
   as **Most wanted**, add notes, and drag to reorder.
+- **Import from Amazon:** the user copies their Amazon list page in their own browser
+  (select all, copy) and pastes it into Wishlark. The app finds each product with its name,
+  image, requested quantity, "Highest" priority (becomes Most wanted) and comment. The user
+  reviews and edits the items, then imports them into a new or existing list, and items already
+  on that list are skipped. On phones, users can paste Amazon product links instead. Wishlark never
+  fetches Amazon pages itself: Amazon's terms forbid scraping, and doing it could get the
+  affiliate account closed.
 - **Shopping:** every item gets a "Buy at…" button for the original store plus Amazon, Walmart,
   Target and Best Buy (and Barnes & Noble for books). All links pass through `/go/{item}/{store}`,
   which adds affiliate tags and counts clicks.
