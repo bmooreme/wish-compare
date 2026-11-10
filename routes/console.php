@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schedule;
 | runs the scheduler every minute and the scheduler drains the queue
 | (confirmation and notification emails) without overlapping itself.
 |
-|   * * * * * cd /path/to/wishlark && php artisan schedule:run >> /dev/null 2>&1
+|   * * * * * cd /path/to/tappywish && php artisan schedule:run >> /dev/null 2>&1
 */
 Schedule::command('queue:work --stop-when-empty --max-time=50 --tries=3')
     ->everyMinute()

@@ -11,7 +11,7 @@ import { useForm } from '@inertiajs/react';
 import { LoaderCircle, Lock, PackageCheck } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
 
-const REMEMBER_KEY = 'wishlark.buyer';
+const REMEMBER_KEY = 'tappywish.buyer';
 
 interface Props {
     item: GuestItem | null;

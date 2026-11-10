@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::factory()->create([
             'name' => 'Sam Carter',
-            'email' => 'demo@wishlark.test',
+            'email' => 'demo@tappywish.test',
         ]);
 
         $registry = GiftList::factory()->for($user)->registry()->public()->create([

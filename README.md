@@ -1,11 +1,11 @@
-# Wishlark
+# TappyWish
 
 Wish lists and gift registries that work with every store. List owners add products from any
 shop; guests (no account needed) buy wherever they like through affiliate-tagged links, then
 mark the gift purchased with their order number.
 
-> "Wishlark" is a working name. Change `APP_NAME` in `.env` and the whole UI, the emails and the
-> installable app's name follow it.
+> The app name comes from `APP_NAME` in `.env`. The UI, emails, page titles and the installable
+> app's name all follow it.
 
 ## Features
 
@@ -18,10 +18,10 @@ mark the gift purchased with their order number.
   page's Open Graph / schema.org data. Manual entry is always available. Flag any number of items
   as **Most wanted**, add notes, and drag to reorder.
 - **Import from Amazon:** the user copies their Amazon list page in their own browser
-  (select all, copy) and pastes it into Wishlark. The app finds each product with its name,
+  (select all, copy) and pastes it into TappyWish. The app finds each product with its name,
   image, requested quantity, "Highest" priority (becomes Most wanted) and comment. The user
   reviews and edits the items, then imports them into a new or existing list, and items already
-  on that list are skipped. On phones, users can paste Amazon product links instead. Wishlark never
+  on that list are skipped. On phones, users can paste Amazon product links instead. TappyWish never
   fetches Amazon pages itself: Amazon's terms forbid scraping, and doing it could get the
   affiliate account closed.
 - **Product photos:** Amazon-hosted photos are never stored or shown, because Amazon only allows
@@ -59,7 +59,7 @@ npm install
 cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
-php artisan migrate --seed   # demo user: demo@wishlark.test / password
+php artisan migrate --seed   # demo user: demo@tappywish.test / password
 composer dev                  # or: php artisan serve + npm run dev
 ```
 
@@ -72,22 +72,22 @@ The server needs PHP 8.2+, MariaDB, SSH access and cron. Node is **not** needed 
 1. **Build the front end** on your computer or in CI: `npm ci && npm run build`. This creates
    `public/build/`.
 2. **Upload the project** (including `public/build/`) to a folder *outside* `public_html`,
-   e.g. `~/wishlark`.
+   e.g. `~/tappywish`.
 3. **Install Composer** in your home directory (one time only):
    ```bash
    mkdir -p ~/bin && cd ~/bin
    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
    php composer-setup.php --filename=composer && rm composer-setup.php
    ```
-4. **Install PHP dependencies:** `cd ~/wishlark && ~/bin/composer install --no-dev --optimize-autoloader`
+4. **Install PHP dependencies:** `cd ~/tappywish && ~/bin/composer install --no-dev --optimize-autoloader`
 5. **Configure:** `cp .env.example .env`, then set `APP_ENV=production`, `APP_DEBUG=false`,
    `APP_URL`, the `DB_*` values (`DB_CONNECTION=mariadb`) and the `MAIL_*` SMTP settings from
    your host. Then run `php artisan key:generate`.
    **Back up `APP_KEY`.** Order numbers and shipping addresses are encrypted with it, and they
    can't be recovered without it.
-6. **Point the domain** (or subdomain) document root at `~/wishlark/public` in cPanel. If the
+6. **Point the domain** (or subdomain) document root at `~/tappywish/public` in cPanel. If the
    domain must use `public_html`, replace that folder with a symlink:
-   `ln -s ~/wishlark/public ~/public_html`
+   `ln -s ~/tappywish/public ~/public_html`
 7. **Migrate and cache:**
    ```bash
    php artisan migrate --force
@@ -95,7 +95,7 @@ The server needs PHP 8.2+, MariaDB, SSH access and cron. Node is **not** needed 
    ```
 8. **Cron** (cPanel → Cron Jobs). This one entry sends the queued emails every minute:
    ```
-   * * * * * cd ~/wishlark && php artisan schedule:run >> /dev/null 2>&1
+   * * * * * cd ~/tappywish && php artisan schedule:run >> /dev/null 2>&1
    ```
 
 To update later: upload the new files, run `composer install --no-dev`, then
@@ -108,7 +108,7 @@ tagged yet.
 
 | Variable | Example |
 | --- | --- |
-| `AMAZON_ASSOCIATE_TAG` | `wishlark-20` |
+| `AMAZON_ASSOCIATE_TAG` | `tappywish-20` |
 | `WALMART_AFFILIATE_TEMPLATE` | Impact deep link, e.g. `https://goto.walmart.com/c/ID/ID/9383?u={url}` |
 | `TARGET_AFFILIATE_TEMPLATE` | Impact deep link with `{url}` |
 | `BESTBUY_AFFILIATE_TEMPLATE` | Impact deep link with `{url}` |

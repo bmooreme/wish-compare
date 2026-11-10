@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react';
 
-/** Wishlark mark: a wish-star with a small companion spark. Name-agnostic so the brand can change. */
+/** TappyWish mark: a wish-star with a small companion spark. Name-agnostic so the brand can change. */
 export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
     return (
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
