@@ -10,11 +10,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
 
-interface LoginForm {
+type LoginForm = {
     email: string;
     password: string;
     remember: boolean;
-}
+};
 
 interface LoginProps {
     status?: string;
@@ -80,7 +80,13 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     </div>
 
                     <div className="flex items-center space-x-3">
-                        <Checkbox id="remember" name="remember" tabIndex={3} />
+                        <Checkbox
+                            id="remember"
+                            name="remember"
+                            tabIndex={3}
+                            checked={data.remember}
+                            onCheckedChange={(v) => setData('remember', v === true)}
+                        />
                         <Label htmlFor="remember">Remember me</Label>
                     </div>
 

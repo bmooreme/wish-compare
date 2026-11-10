@@ -1,3 +1,5 @@
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/instrument-sans';
 import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/react';
@@ -10,10 +12,10 @@ declare global {
     const route: typeof routeFn;
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'TappyList';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => (title ? `${title} · ${appName}` : appName),
     resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
     setup({ el, App, props }) {
         const root = createRoot(el);
@@ -21,9 +23,16 @@ createInertiaApp({
         root.render(<App {...props} />);
     },
     progress: {
-        color: '#4B5563',
+        color: '#e9877c',
     },
 });
 
 // This will set light / dark mode on load...
 initializeTheme();
+
+// Installable app (PWA): register the service worker in production builds.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+    });
+}
