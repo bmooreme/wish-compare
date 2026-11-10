@@ -1,8 +1,8 @@
-/* TappyWish service worker: app-shell caching with an offline fallback.
+/* TappyList service worker: app-shell caching with an offline fallback.
  * Pages are always fetched from the network (lists change constantly);
  * versioned build assets are cached forever since their names are hashed. */
 const VERSION = 'v1';
-const STATIC_CACHE = `tappywish-static-${VERSION}`;
+const STATIC_CACHE = `tappylist-static-${VERSION}`;
 const OFFLINE_URL = '/offline.html';
 const PRECACHE = [OFFLINE_URL, '/favicon.svg', '/icons/icon-192.png'];
 
@@ -14,7 +14,7 @@ self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches
             .keys()
-            .then((keys) => Promise.all(keys.filter((key) => key.startsWith('tappywish-') && key !== STATIC_CACHE).map((key) => caches.delete(key))))
+            .then((keys) => Promise.all(keys.filter((key) => key.startsWith('tappylist-') && key !== STATIC_CACHE).map((key) => caches.delete(key))))
             .then(() => self.clients.claim()),
     );
 });

@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 /**
  * Extracts items from an Amazon wish list that the user copied from their own
- * browser and pasted into TappyWish. We never fetch Amazon pages ourselves:
+ * browser and pasted into TappyList. We never fetch Amazon pages ourselves:
  * Amazon's terms forbid automated scraping (which would also put the
  * Associates account at risk), and it blocks server requests anyway.
  *

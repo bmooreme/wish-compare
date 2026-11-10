@@ -129,11 +129,11 @@ class SharedListTest extends TestCase
 
     public function test_outbound_links_redirect_to_the_store_and_record_the_click(): void
     {
-        config(['stores.retailers.amazon.affiliate' => ['type' => 'param', 'param' => 'tag', 'value' => 'tappywish-20']]);
+        config(['stores.retailers.amazon.affiliate' => ['type' => 'param', 'param' => 'tag', 'value' => 'tappylist-20']]);
         $item = ListItem::factory()->create(['title' => 'Wool socks', 'url' => 'https://www.target.com/p/socks', 'store_key' => 'target']);
 
         $this->get(route('outbound', [$item, 'amazon']))
-            ->assertRedirect('https://www.amazon.com/s?k=Wool+socks&tag=tappywish-20');
+            ->assertRedirect('https://www.amazon.com/s?k=Wool+socks&tag=tappylist-20');
 
         $this->get(route('outbound', [$item, 'target']))
             ->assertRedirect('https://www.target.com/p/socks');

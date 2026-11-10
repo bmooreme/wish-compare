@@ -15,7 +15,7 @@ use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 
-/** Moves a user's existing Amazon wish list into TappyWish from a copy-and-paste. */
+/** Moves a user's existing Amazon wish list into TappyList from a copy-and-paste. */
 class AmazonImportController extends Controller
 {
     public function create(Request $request): Response
